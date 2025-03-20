@@ -1,4 +1,3 @@
-```markdown
 # 🖼️ Doodle Classifier
 
 A web application that classifies doodles and uploaded images using a deep learning model. Users can draw on a canvas or upload an image, and the app will predict the doodle’s category with confidence scores. The backend uses a ResNet-50 model trained on a combined dataset of CIFAR-10, CIFAR-100, MNIST, and FashionMNIST, supporting 130 classes.
@@ -11,8 +10,6 @@ A web application that classifies doodles and uploaded images using a deep learn
 - **Animated UI**: Smooth animations for a better user experience using Framer Motion.
 - **Confidence Scores**: Displays the top prediction and other possible categories with confidence bars.
 - **Deep Learning Model**: Uses a ResNet-50 model trained on 130 classes from CIFAR-10, CIFAR-100, MNIST, and FashionMNIST datasets.
-
-```
 ## 📂 Project Structure
 ```
 image_predictor/
