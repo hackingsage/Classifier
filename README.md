@@ -10,6 +10,10 @@ A web application that classifies doodles and uploaded images using a deep learn
 - **Animated UI**: Smooth animations for a better user experience using Framer Motion.
 - **Confidence Scores**: Displays the top prediction and other possible categories with confidence bars.
 - **Deep Learning Model**: Uses a ResNet-50 model trained on 130 classes from CIFAR-10, CIFAR-100, MNIST, and FashionMNIST datasets.
+
+> [!NOTE]  
+> The model hasn't been trained effectively due to shortage of powerfull GPUs. However you can train it on your own, if you have CUDA-enabled GPU.
+
 ## 📂 Project Structure
 ```
 image_predictor/
