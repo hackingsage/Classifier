@@ -155,7 +155,7 @@ pip3 install -r requirements.txt
 ```
 
 ## 🎨 Demo
-**Upload Demo (`gifs/UploadAnimation.gif`)**:
+![GIF](gifs/UploadAnimation.gif)
 
 ## 🚀 Future Improvements
 - Add more drawing tools (e.g., color picker, brush size).
