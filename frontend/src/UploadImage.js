@@ -1,9 +1,11 @@
 import React from 'react';
 
-function UploadImage({ setPredictions }) {
+function UploadImage({ onPredictionStart, onPredictionEnd }) {
   const handleUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
+
+    onPredictionStart();
 
     const formData = new FormData();
     formData.append('image', file);
@@ -13,12 +15,14 @@ function UploadImage({ setPredictions }) {
         method: 'POST',
         body: formData,
       });
+
       if (!response.ok) throw new Error(`Server error: ${response.status}`);
       const result = await response.json();
-      setPredictions(result);
+      onPredictionEnd(result);
     } catch (error) {
-      console.error('Upload failed:', error);
-      alert('Failed to get prediction. Please try again.');
+      console.error('Upload error:', error);
+      alert('Failed to get prediction. Check console for details.');
+      onPredictionEnd(null);
     }
   };
 
