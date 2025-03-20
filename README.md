@@ -166,29 +166,3 @@ MIT License (assumed, please confirm and add a `LICENSE` file to the repository)
 
 ## 🙌 Contributing
 Contributions are welcome! Please open an issue or submit a pull request with your improvements.
-```
-
----
-
-## How to Use This File
-
-1. **Copy the Content**: Copy the entire content above (starting from `# 🖼️ Doodle Classifier` to the end).
-2. **Create or Update the File**:
-   - Open your project directory (`image_predictor/`).
-   - If `README.md` already exists, open it in a text editor and replace its content with the copied content.
-   - If it doesn’t exist, create a new file named `README.md` and paste the content into it.
-3. **Save the File**: Save the `README.md` file in your project’s root directory.
-4. **Verify**: If you’re using a platform like GitHub, commit and push the file to your repository, and check how it renders on the repository’s main page.
-
----
-
-## Additional Notes
-- **Screenshots**: The `README.md` includes a placeholder for UI screenshots. You can take screenshots of your app (e.g., the drawing board, upload section, and prediction results), save them in a `screenshots/` directory, and update the `README.md` with links to those images, like this:
-  ```markdown
-  ## 🎨 UI Screenshots
-  ![Drawing Board](screenshots/drawing-board.png)
-  ![Upload Section](screenshots/upload-section.png)
-  ![Prediction Results](screenshots/prediction-results.png)
-  ```
-- **License**: I assumed an MIT License, as it’s common for open-source projects. If you prefer a different license, update the `License` section and add a `LICENSE` file to your repository.
-- **Further Customization**: If you’d like to add more sections (e.g., troubleshooting, deployment instructions, or a demo link), let me know, and I can update the `README.md`.
