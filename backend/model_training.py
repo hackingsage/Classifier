@@ -100,7 +100,7 @@ def main():
         return test_loss, test_acc
 
     # Training loop
-    num_epochs = 100 # Due to GPU restrictions, else we can go upto 100
+    num_epochs = 50 # Due to GPU restrictions, else we can go upto 100
     for epoch in range(num_epochs):
         print(f"Epoch [{epoch+1}/{num_epochs}]")
         train_loss, train_acc = train(model, train_loader, criterion, optimizer, device)
