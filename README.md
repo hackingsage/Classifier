@@ -12,6 +12,7 @@ A web application that classifies doodles and uploaded images using a deep learn
 - **Confidence Scores**: Displays the top prediction and other possible categories with confidence bars.
 - **Deep Learning Model**: Uses a ResNet-50 model trained on 130 classes from CIFAR-10, CIFAR-100, MNIST, and FashionMNIST datasets.
 
+```
 ## 📂 Project Structure
 ```
 image_predictor/
