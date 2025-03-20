@@ -154,8 +154,8 @@ cd backend
 pip3 install -r requirements.txt
 ```
 
-## 🎨 UI Screenshots
-(To be added: Screenshots of the drawing board, upload section, and prediction results.)
+## 🎨 Demo
+**Upload Demo (`gifs/UploadAnimation.gif`)**:
 
 ## 🚀 Future Improvements
 - Add more drawing tools (e.g., color picker, brush size).
