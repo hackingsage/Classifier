@@ -1,39 +1,196 @@
-# 🖼️ Classifier
+```markdown
+# 🖼️ Doodle Classifier
 
-## 📂 **Project Structure**
-```plaintext
+A web application that classifies doodles and uploaded images using a deep learning model. Users can draw on a canvas or upload an image, and the app will predict the doodle’s category with confidence scores. The backend uses a ResNet-50 model trained on a combined dataset of CIFAR-10, CIFAR-100, MNIST, and FashionMNIST, supporting 130 classes.
+
+## ✨ Features
+- **Draw and Predict**: Draw a doodle on a canvas, and the app will predict its category after a 500ms delay.
+- **Upload and Predict**: Upload an image file to get predictions.
+- **Responsive Design**: Mobile-friendly layout with a clean, modern UI.
+- **Dark/Light Mode**: Toggle between dark and light themes.
+- **Animated UI**: Smooth animations for a better user experience using Framer Motion.
+- **Confidence Scores**: Displays the top prediction and other possible categories with confidence bars.
+- **Deep Learning Model**: Uses a ResNet-50 model trained on 130 classes from CIFAR-10, CIFAR-100, MNIST, and FashionMNIST datasets.
+
+## 📂 Project Structure
+```
 image_predictor/
 ├── backend/                # Flask backend
 │   ├── app.py             # Flask server
-|   |── model_training     # Training the model
-│   ├── model.py           # Using pretrained model to predict result
+│   ├── model_training.py  # Script to train the model
+│   ├── model.py           # Model architecture and prediction logic
 │   └── requirements.txt   # Backend dependencies
 ├── frontend/               # React frontend
 │   ├── src/
-│   │   ├── App.js        # Main React component
+│   │   ├── App.js         # Main React component
 │   │   ├── DrawingBoard.js # Drawing canvas component
-│   │   ├── UploadImage.js # Upload component
-│   │   ├── App.css       # Styling
-│   │   └── index.js      # Entry point
+│   │   ├── UploadImage.js # Image upload component
+│   │   ├── App.css        # Styling
+│   │   └── index.js       # Entry point
 │   ├── package.json       # Frontend dependencies
 │   └── public/            # Static assets (e.g., index.html)
 └── README.md              # Project info
 ```
 
-Steps to run:- 
+## 🛠️ Setup Instructions
 
-Backend
+### Prerequisites
+- **Node.js** and **npm** (for the frontend)
+- **Python 3** and **pip** (for the backend)
+- **CUDA-enabled GPU** (optional, for faster training and inference; CPU will be used if GPU is unavailable)
+
+### Backend Setup
+1. Navigate to the backend directory:
+   ```
+   cd backend
+   ```
+2. Install dependencies:
+   ```
+   pip3 install -r requirements.txt
+   ```
+3. (Optional) Train the model if you don’t have `trained_model.pth`:
+   - Run the training script:
+     ```
+     python3 model_training.py
+     ```
+   - This will download the CIFAR-10, CIFAR-100, MNIST, and FashionMNIST datasets, train the ResNet-50 model for 50 epochs, and save the trained model as `trained_model.pth`.
+   - **Note**: Training requires significant computational resources (GPU recommended) and may take several hours. The pretrained model (`trained_model.pth`) should already be included in the repository.
+4. Start the Flask server:
+   ```
+   python3 app.py
+   ```
+   The backend will run on `http://localhost:5000`.
+
+### Frontend Setup
+1. Navigate to the frontend directory:
+   ```
+   cd frontend
+   ```
+2. Install dependencies:
+   ```
+   npm install
+   ```
+3. Start the React development server:
+   ```
+   npm start
+   ```
+   The frontend will run on `http://localhost:3000`.
+
+### Running the Application
+- Ensure both the backend and frontend are running simultaneously.
+- Open `http://localhost:3000` in your browser to use the app.
+- Draw a doodle or upload an image to see predictions.
+
+## 🧠 Model Training
+The backend uses a ResNet-50 model trained on a combined dataset of:
+- **CIFAR-10**: 10 classes (e.g., airplane, cat, dog).
+- **CIFAR-100**: 100 classes (e.g., apple, bear, bicycle).
+- **MNIST**: 10 digit classes (labeled as `digit_0` to `digit_9`).
+- **FashionMNIST**: 10 clothing classes (e.g., t-shirt, sandal).
+
+### Training Details
+- **Total Classes**: 130.
+- **Epochs**: 50 (configurable in `model_training.py`).
+- **Batch Size**: 128.
+- **Optimizer**: Adam with a learning rate of 0.001.
+- **Loss Function**: CrossEntropyLoss.
+- **Transformations**: Resize to 32x32, normalize to [-1, 1], convert grayscale images to 3 channels.
+
+To retrain the model, run:
 ```
 cd backend
-pip3 install -r requirements.txt
-python3 app.py
+python3 model_training.py
 ```
 
-Frontend
+## 📡 Backend API
+The backend exposes a single endpoint for predictions:
+
+- **Endpoint**: `POST /predict`
+- **Request**: Form-data with an `image` field containing the image file (PNG/JPEG).
+- **Response**:
+  ```json
+  {
+    "top_prediction": { "label": "cat", "probability": "99.9%" },
+    "others": [
+      { "label": "dog", "probability": "0.1%" },
+      { "label": "tiger", "probability": "0.05%" },
+      ...
+    ]
+  }
+  ```
+- **Error Response**:
+  ```json
+  { "error": "Error message" }
+  ```
+
+## 📦 Dependencies
+
+### Frontend Dependencies
+- `react` and `react-dom`: Core React libraries.
+- `@mui/material`, `@mui/styles`, `@mui/icons-material`: Material-UI components for the UI.
+- `framer-motion`: For animations.
+- `react-sketch-canvas`: For the drawing canvas.
+
+Install them using:
 ```
 cd frontend
 npm install
-npm start
 ```
 
-Note:- Run both simultaneously
+### Backend Dependencies
+- `flask`: Web framework for the server.
+- `torch`: PyTorch for deep learning.
+- `pillow`: Image processing.
+- `numpy`: Numerical operations.
+- `torchvision`: Datasets and models.
+- `flask_cors`: Enable CORS for frontend communication.
+- `tqdm`: Progress bars for training (optional).
+
+Install them using:
+```
+cd backend
+pip3 install -r requirements.txt
+```
+
+## 🎨 UI Screenshots
+(To be added: Screenshots of the drawing board, upload section, and prediction results.)
+
+## 🚀 Future Improvements
+- Add more drawing tools (e.g., color picker, brush size).
+- Support for touch devices for drawing.
+- Improve prediction accuracy with a larger dataset or fine-tuning.
+- Add loading states for individual components.
+- Deploy the app to a cloud platform (e.g., Heroku, AWS).
+- Add API documentation using Swagger/OpenAPI.
+
+## 📜 License
+MIT License (assumed, please confirm and add a `LICENSE` file to the repository).
+
+## 🙌 Contributing
+Contributions are welcome! Please open an issue or submit a pull request with your improvements.
+```
+
+---
+
+## How to Use This File
+
+1. **Copy the Content**: Copy the entire content above (starting from `# 🖼️ Doodle Classifier` to the end).
+2. **Create or Update the File**:
+   - Open your project directory (`image_predictor/`).
+   - If `README.md` already exists, open it in a text editor and replace its content with the copied content.
+   - If it doesn’t exist, create a new file named `README.md` and paste the content into it.
+3. **Save the File**: Save the `README.md` file in your project’s root directory.
+4. **Verify**: If you’re using a platform like GitHub, commit and push the file to your repository, and check how it renders on the repository’s main page.
+
+---
+
+## Additional Notes
+- **Screenshots**: The `README.md` includes a placeholder for UI screenshots. You can take screenshots of your app (e.g., the drawing board, upload section, and prediction results), save them in a `screenshots/` directory, and update the `README.md` with links to those images, like this:
+  ```markdown
+  ## 🎨 UI Screenshots
+  ![Drawing Board](screenshots/drawing-board.png)
+  ![Upload Section](screenshots/upload-section.png)
+  ![Prediction Results](screenshots/prediction-results.png)
+  ```
+- **License**: I assumed an MIT License, as it’s common for open-source projects. If you prefer a different license, update the `License` section and add a `LICENSE` file to your repository.
+- **Further Customization**: If you’d like to add more sections (e.g., troubleshooting, deployment instructions, or a demo link), let me know, and I can update the `README.md`.
