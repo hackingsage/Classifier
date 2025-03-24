@@ -166,7 +166,7 @@ pip3 install -r requirements.txt
 - Add API documentation using Swagger/OpenAPI.
 
 ## 📜 License
-MIT License (assumed, please confirm and add a `LICENSE` file to the repository).
+MIT License.
 
 ## 🙌 Contributing
 Contributions are welcome! Please open an issue or submit a pull request with your improvements.
