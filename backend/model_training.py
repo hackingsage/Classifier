@@ -4,7 +4,7 @@ import torch.optim as optim
 import torchvision.transforms as transforms
 import torchvision.datasets as datasets
 from torch.utils.data import DataLoader, ConcatDataset
-from torchvision.models import resnet50
+from torchvision.models import resnet50 , ResNet50_Weights
 from tqdm import tqdm
 
 def main():
@@ -50,9 +50,10 @@ def main():
 
     # Model setup
     num_classes = 130  # 10 + 100 + 10 + 10
-    model = resnet50(pretrained=True)
+    model = resnet50(weights=ResNet50_Weights.IMAGENET1K_V1)
     model.fc = nn.Linear(model.fc.in_features, num_classes)    #final fully connected layer to output the total number of classes
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu") #Checks for GPU else goes for CPU
+    print(device)
     model = model.to(device)
 
     # Loss and optimizer
