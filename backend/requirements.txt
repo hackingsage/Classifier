@@ -4,4 +4,3 @@ pillow
 numpy
 torchvision
 flask_cors
-tqdm
